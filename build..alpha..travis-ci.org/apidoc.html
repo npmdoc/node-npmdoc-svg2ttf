@@ -1,0 +1,1034 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/fontello/svg2ttf#readme"
+
+    >svg2ttf (v4.0.2)</a>
+</h1>
+<h4>Converts SVG font to TTF font</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.svg2ttf">module svg2ttf</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">svg2ttf.</span>math</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">svg2ttf.</span>sfnt</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">svg2ttf.</span>svg</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">svg2ttf.</span>ucs2</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.svg2ttf.math">module svg2ttf.math</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.math.Point">
+            function <span class="apidocSignatureSpan">svg2ttf.math.</span>Point
+            <span class="apidocSignatureSpan">(x, y)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.math.isInLine">
+            function <span class="apidocSignatureSpan">svg2ttf.math.</span>isInLine
+            <span class="apidocSignatureSpan">(p1, m, p2, accuracy)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.svg2ttf.sfnt">module svg2ttf.sfnt</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.sfnt.Contour">
+            function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>Contour
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.sfnt.Font">
+            function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>Font
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.sfnt.Glyph">
+            function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>Glyph
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.sfnt.Point">
+            function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>Point
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.sfnt.SfntName">
+            function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>SfntName
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.sfnt.toTTF">
+            function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>toTTF
+            <span class="apidocSignatureSpan">(font)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.svg2ttf.svg">module svg2ttf.svg</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.svg.cubicToQuad">
+            function <span class="apidocSignatureSpan">svg2ttf.svg.</span>cubicToQuad
+            <span class="apidocSignatureSpan">(segment, index, x, y, accuracy)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.svg.load">
+            function <span class="apidocSignatureSpan">svg2ttf.svg.</span>load
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.svg.toSfntCoutours">
+            function <span class="apidocSignatureSpan">svg2ttf.svg.</span>toSfntCoutours
+            <span class="apidocSignatureSpan">(svgPath)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.svg2ttf.ucs2">module svg2ttf.ucs2</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.ucs2.decode">
+            function <span class="apidocSignatureSpan">svg2ttf.ucs2.</span>decode
+            <span class="apidocSignatureSpan">(string)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.ucs2.encode">
+            function <span class="apidocSignatureSpan">svg2ttf.ucs2.</span>encode
+            <span class="apidocSignatureSpan">(array)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.svg2ttf" id="apidoc.module.svg2ttf">module svg2ttf</a></h1>
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.svg2ttf.math" id="apidoc.module.svg2ttf.math">module svg2ttf.math</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.math.Point" id="apidoc.element.svg2ttf.math.Point">
+        function <span class="apidocSignatureSpan">svg2ttf.math.</span>Point
+        <span class="apidocSignatureSpan">(x, y)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    var sfntContours = svg.toSfntCoutours(svgPath);
+
+    // Add contours to SFNT font
+    glyph.contours = _.map(sfntContours, function (sfntContour) {
+var contour = new sfnt.Contour();
+
+contour.points = _.map(sfntContour, function (sfntPoint) {
+  var point = new sfnt.<span class="apidocCodeKeywordSpan">Point</span>();
+
+  point.x = sfntPoint.x;
+  point.y = sfntPoint.y;
+  point.onCurve = sfntPoint.onCurve;
+  return point;
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.math.isInLine" id="apidoc.element.svg2ttf.math.isInLine">
+        function <span class="apidocSignatureSpan">svg2ttf.math.</span>isInLine
+        <span class="apidocSignatureSpan">(p1, m, p2, accuracy)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isInLine(p1, m, p2, accuracy) {
+  var a = p1.sub(m).sqr();
+  var b = p2.sub(m).sqr();
+  var c = p1.sub(p2).sqr();
+
+  // control point not between anchors
+  if ((a &#x3e; (b + c)) || (b &#x3e; (a + c))) {
+    return false;
+  }
+
+  // count distance via scalar multiplication
+  var distance = Math.sqrt(Math.pow((p1.x - m.x) * (p2.y - m.y) - (p2.x - m.x) * (p1.y - m.y), 2) / c);
+
+  return distance &#x3c; accuracy ? true : false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.svg2ttf.sfnt" id="apidoc.module.svg2ttf.sfnt">module svg2ttf.sfnt</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.sfnt.Contour" id="apidoc.element.svg2ttf.sfnt.Contour">
+        function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>Contour
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Contour() {
+  this.points = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      .iterate(function (segment, index, x, y) {
+return svg.cubicToQuad(segment, index, x, y, accuracy);
+      });
+    var sfntContours = svg.toSfntCoutours(svgPath);
+
+    // Add contours to SFNT font
+    glyph.contours = _.map(sfntContours, function (sfntContour) {
+      var contour = new sfnt.<span class="apidocCodeKeywordSpan">Contour</span>();
+
+      contour.points = _.map(sfntContour, function (sfntPoint) {
+var point = new sfnt.Point();
+
+point.x = sfntPoint.x;
+point.y = sfntPoint.y;
+point.onCurve = sfntPoint.onCurve;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.sfnt.Font" id="apidoc.element.svg2ttf.sfnt.Font">
+        function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>Font
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Font() {
+  this.ascent = 850;
+  this.copyright = &#x27;&#x27;;
+  this.createdDate = new Date();
+  this.glyphs = [];
+  this.ligatures = [];
+  // Maping of code points to glyphs.
+  // Keys are actually numeric, thus should be `parseInt`ed.
+  this.codePoints = {};
+  this.isFixedPitch = 0;
+  this.italicAngle = 0;
+  this.familyClass = 0; // No Classification
+  this.familyName = &#x27;&#x27;;
+  this.fsSelection = 0x40; // Characters are in the standard weight/style for the font.
+  // Non zero value can cause issues in IE, https://github.com/fontello/svg2ttf/issues/45
+  this.fsType = 0;
+  this.lowestRecPPEM = 8;
+  this.macStyle = 0;
+  this.modifiedDate = new Date();
+  this.panose = {
+    familyType: 2, // Latin Text
+    serifStyle: 0, // any
+    weight: 5, // book
+    proportion: 3, //modern
+    contrast: 0, //any
+    strokeVariation: 0, //any,
+    armStyle: 0, //any,
+    letterform: 0, //any,
+    midline: 0, //any,
+    xHeight: 0 //any,
+  };
+  this.revision = 1;
+  this.sfntNames = [];
+  this.underlineThickness = 0;
+  this.unitsPerEm = 1000;
+  this.weightClass = 400; // normal
+  this.width = 1000;
+  this.widthClass = 5; // Medium (normal)
+  this.ySubscriptXOffset = 0;
+  this.ySuperscriptXOffset = 0;
+  this.int_descent = -150;
+
+//getters and setters
+
+  Object.defineProperty(this, &#x27;descent&#x27;, {
+    get: function () {
+      return this.int_descent;
+    },
+    set: function (value) {
+      this.int_descent = parseInt(Math.round(-Math.abs(value)), 10);
+    }
+  });
+
+  this.__defineGetter__(&#x27;avgCharWidth&#x27;, function () {
+    if (this.glyphs.length === 0) {
+      return 0;
+    }
+    var widths = _.map(this.glyphs, &#x27;width&#x27;);
+
+    return parseInt(widths.reduce(function (prev, cur) {
+      return prev + cur;
+    }) / widths.length, 10);
+  });
+
+  Object.defineProperty(this, &#x27;ySubscriptXSize&#x27;, {
+    get: function () {
+      return parseInt(!_.isUndefined(this.int_ySubscriptXSize) ? this.int_ySubscriptXSize : (this.width * 0.6347), 10);
+    },
+    set: function (value) {
+      this.int_ySubscriptXSize = value;
+    }
+  });
+
+  Object.defineProperty(this, &#x27;ySubscriptYSize&#x27;, {
+    get: function () {
+      return parseInt(!_.isUndefined(this.int_ySubscriptYSize) ? this.int_ySubscriptYSize : ((this.ascent - this.descent) * 0.7),
+10);
+    },
+    set: function (value) {
+      this.int_ySubscriptYSize = value;
+    }
+  });
+
+  Object.defineProperty(this, &#x27;ySubscriptYOffset&#x27;, {
+    get: function () {
+      return parseInt(!_.isUndefined(this.int_ySubscriptYOffset) ? this.int_ySubscriptYOffset : ((this.ascent - this.descent) *
+0.14), 10);
+    },
+    set: function (value) {
+      this.int_ySubscriptYOffset = value;
+    }
+  });
+
+  Object.defineProperty(this, &#x27;ySuperscriptXSize&#x27;, {
+    get: function () {
+      return parseInt(!_.isUndefined(this.int_ySuperscriptXSize) ? this.int_ySuperscriptXSize : (this.width * 0.6347), 10);
+    },
+    set: function (value) {
+      this.int_ySuperscriptXSize = value;
+    }
+  });
+
+  Object.defineProperty(this, &#x27;ySuperscriptYSize&#x27;, {
+    get: function () {
+      return parseInt(!_.isUndefined(this.int_ySuperscriptYSize) ? this.int_ySuperscriptYSize : ((this.ascent - this.descent) *
+0.7), 10);
+    },
+    set: function (value) {
+      this.int_ySuperscriptYSize = value;
+    }
+  });
+
+  Object.defineProperty(this, &#x27;ySuperscriptYOffset&#x27;, {
+    get: function () {
+      return parseInt(!_.isUndefined(this.int_ySuperscriptYOffset) ? this.int_ySuperscriptYOffset : ((this.ascent - this.descent
+) * 0.48), 10);
+    },
+    set: function (value) {
+      this.int_ySuperscriptYOffset = value;
+    }
+  });
+
+  Object.defineProperty(this, &#x27;yStrikeoutSize&#x27;, {
+    get: function () {
+      return parseInt(!_.isUndefined(this.int_yStrikeoutSize) ? this.int_yStrikeoutSize : ((this.ascent - this.descent) * 0.049),
+10);
+    },
+    set: function (value) {
+      this.int_yStrikeoutSize = value;
+    }
+  });
+
+  Object.defineProperty(this, &#x27;yStrikeoutPosition&#x27;, {
+    get: function () {
+      return parseInt(!_.isUndefined(this.int_yStrikeoutPosition) ? this.int_yStrikeoutPosition : ((this.ascent - this.descent) *
+0.258), 10);
+    },
+    set: function (value) { ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var sfnt    = require(&#x27;./lib/sfnt&#x27;);
+
+
+var VERSION_RE = /^(Version )?(\d+[.]\d+)$/i;
+
+
+function svg2ttf(svgString, options) {
+var font = new sfnt.<span class="apidocCodeKeywordSpan">Font</span>();
+var svgFont = svg.load(svgString);
+
+options = options || {};
+
+font.id = options.id || svgFont.id;
+font.familyName = options.familyname || svgFont.familyName || svgFont.id;
+font.copyright = options.copyright || svgFont.metadata;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.sfnt.Glyph" id="apidoc.element.svg2ttf.sfnt.Glyph">
+        function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>Glyph
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Glyph() {
+  this.contours = [];
+  this.d = &#x27;&#x27;;
+  this.id = &#x27;&#x27;;
+  this.height = 0;
+  this.name = &#x27;&#x27;;
+  this.width = 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+codePoints[codePoint] = glyph;
+return true;
+  }
+
+  // add SVG glyphs to SFNT font
+  _.forEach(svgFont.glyphs, function (svgGlyph) {
+var glyph = new sfnt.<span class="apidocCodeKeywordSpan">Glyph</span>();
+
+glyph.name = svgGlyph.name;
+glyph.d = svgGlyph.d;
+glyph.height = !isNaN(svgGlyph.height) ? svgGlyph.height : font.height;
+glyph.width = !isNaN(svgGlyph.width) ? svgGlyph.width : font.width;
+glyphs.push(glyph);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.sfnt.Point" id="apidoc.element.svg2ttf.sfnt.Point">
+        function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>Point
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Point() {
+  this.onCurve = true;
+  this.x = 0;
+  this.y = 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    var sfntContours = svg.toSfntCoutours(svgPath);
+
+    // Add contours to SFNT font
+    glyph.contours = _.map(sfntContours, function (sfntContour) {
+var contour = new sfnt.Contour();
+
+contour.points = _.map(sfntContour, function (sfntPoint) {
+  var point = new sfnt.<span class="apidocCodeKeywordSpan">Point</span>();
+
+  point.x = sfntPoint.x;
+  point.y = sfntPoint.y;
+  point.onCurve = sfntPoint.onCurve;
+  return point;
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.sfnt.SfntName" id="apidoc.element.svg2ttf.sfnt.SfntName">
+        function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>SfntName
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SfntName() {
+  this.id = 0;
+  this.value = &#x27;&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.sfnt.toTTF" id="apidoc.element.svg2ttf.sfnt.toTTF">
+        function <span class="apidocSignatureSpan">svg2ttf.sfnt.</span>toTTF
+        <span class="apidocSignatureSpan">(font)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function generateTTF(font) {
+
+  // Prepare TTF contours objects. Note, that while sfnt countours are classes,
+  // ttf contours are just plain arrays of points
+  _.forEach(font.glyphs, function (glyph) {
+    glyph.ttfContours = _.map(glyph.contours, function (contour) {
+      return contour.points;
+    });
+  });
+
+  // Process ttf contours data
+  _.forEach(font.glyphs, function (glyph) {
+
+    // 0.3px accuracy is ok. fo 1000x1000.
+    glyph.ttfContours = utils.simplify(glyph.ttfContours, 0.3);
+    glyph.ttfContours = utils.simplify(glyph.ttfContours, 0.3); // one pass is not enougth
+
+    // Interpolated points can be removed. 1.1px is acceptable
+    // measure - it will give us 1px error after coordinates rounding.
+    glyph.ttfContours = utils.interpolate(glyph.ttfContours, 1.1);
+
+    glyph.ttfContours = utils.roundPoints(glyph.ttfContours);
+    glyph.ttfContours = utils.removeClosingReturnPoints(glyph.ttfContours);
+    glyph.ttfContours = utils.toRelative(glyph.ttfContours);
+  });
+
+  // Add tables
+  var headerSize = 12 + 16 * TABLES.length; // TTF header plus table headers
+  var bufSize = headerSize;
+
+  _.forEach(TABLES, function (table) {
+    //store each table in its own buffer
+    table.buffer = table.create(font);
+    table.length = table.buffer.length;
+    table.corLength = table.length + (4 - table.length % 4) % 4; // table size should be divisible to 4
+    table.checkSum = calc_checksum(table.buffer);
+    bufSize += table.corLength;
+  });
+
+  //calculate offsets
+  var offset = headerSize;
+
+  _.forEach(_.sortBy(TABLES, &#x27;order&#x27;), function (table) {
+    table.offset = offset;
+    offset += table.corLength;
+  });
+
+  //create TTF buffer
+
+  var buf = new ByteBuffer(bufSize);
+
+  //special constants
+  var entrySelector = Math.floor(Math.log(TABLES.length) / Math.LN2);
+  var searchRange = Math.pow(2, entrySelector) * 16;
+  var rangeShift = TABLES.length * 16 - searchRange;
+
+  // Add TTF header
+  buf.writeUint32(CONST.VERSION);
+  buf.writeUint16(TABLES.length);
+  buf.writeUint16(searchRange);
+  buf.writeUint16(entrySelector);
+  buf.writeUint16(rangeShift);
+
+  _.forEach(TABLES, function (table) {
+    buf.writeUint32(utils.identifier(table.innerName)); //inner name
+    buf.writeUint32(table.checkSum); //checksum
+    buf.writeUint32(table.offset); //offset
+    buf.writeUint32(table.length); //length
+  });
+
+  var headOffset = 0;
+
+  _.forEach(_.sortBy(TABLES, &#x27;order&#x27;), function (table) {
+    if (table.innerName === &#x27;head&#x27;) { //we must store head offset to write font checksum
+      headOffset = buf.tell();
+    }
+    buf.writeBytes(table.buffer.buffer);
+    for (var i = table.length; i &#x3c; table.corLength; i++) { //align table to be divisible to 4
+      buf.writeUint8(0);
+    }
+  });
+
+  // Write font checksum (corrected by magic value) into HEAD table
+  buf.setUint32(headOffset + 8, ulong(CONST.CHECKSUM_ADJUSTMENT - calc_checksum(buf)));
+
+  return buf;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        return point;
+      });
+
+      return contour;
+    });
+  });
+
+  var ttf = sfnt.<span class="apidocCodeKeywordSpan">toTTF</span>(font);
+
+  return ttf;
+}
+
+module.exports = svg2ttf;
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.svg2ttf.svg" id="apidoc.module.svg2ttf.svg">module svg2ttf.svg</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.svg.cubicToQuad" id="apidoc.element.svg2ttf.svg.cubicToQuad">
+        function <span class="apidocSignatureSpan">svg2ttf.svg.</span>cubicToQuad
+        <span class="apidocSignatureSpan">(segment, index, x, y, accuracy)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function cubicToQuad(segment, index, x, y, accuracy) {
+  if (segment[0] === &#x27;C&#x27;) {
+    var quadCurves = cubic2quad(
+      x, y,
+      segment[1], segment[2],
+      segment[3], segment[4],
+      segment[5], segment[6],
+      accuracy
+    );
+
+    var res = [];
+
+    for (var i = 2; i &#x3c; quadCurves.length; i += 4) {
+      res.push([ &#x27;Q&#x27;, quadCurves[i], quadCurves[i + 1], quadCurves[i + 2], quadCurves[i + 3] ]);
+    }
+    return res;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+//SVG transformations
+var svgPath = new SvgPath(glyph.d)
+  .abs()
+  .unshort()
+  .unarc()
+  .iterate(function (segment, index, x, y) {
+    return svg.<span class="apidocCodeKeywordSpan">cubicToQuad</span>(segment, index, x, y, accuracy);
+  });
+var sfntContours = svg.toSfntCoutours(svgPath);
+
+// Add contours to SFNT font
+glyph.contours = _.map(sfntContours, function (sfntContour) {
+  var contour = new sfnt.Contour();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.svg.load" id="apidoc.element.svg2ttf.svg.load">
+        function <span class="apidocSignatureSpan">svg2ttf.svg.</span>load
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function load(str) {
+  var attrs;
+
+  var doc = (new DOMParser()).parseFromString(str, &#x27;application/xml&#x27;);
+
+  var metadata, fontElem, fontFaceElem;
+
+  metadata = doc.getElementsByTagName(&#x27;metadata&#x27;)[0];
+  fontElem = doc.getElementsByTagName(&#x27;font&#x27;)[0];
+
+  if (!fontElem) {
+    throw new Error(&#x22;Can&#x27;t find &#x3c;font&#x3e; tag. Make sure you SVG file is font, not image.&#x22;);
+  }
+
+  fontFaceElem = fontElem.getElementsByTagName(&#x27;font-face&#x27;)[0];
+
+  var font = {
+    id: fontElem.getAttribute(&#x27;id&#x27;) || &#x27;fontello&#x27;,
+    familyName: fontFaceElem.getAttribute(&#x27;font-family&#x27;) || &#x27;fontello&#x27;,
+    stretch: fontFaceElem.getAttribute(&#x27;font-stretch&#x27;) || &#x27;normal&#x27;
+  };
+
+  // Doesn&#x27;t work with complex content like &#x3c;strong&#x3e;Copyright:&#x3e;&#x3c;/strong&#x3e;&#x3c;em&#x3e;Fontello&#x3c;/em&#x3e;
+  if (metadata &#x26;&#x26; metadata.textContent) {
+    font.metadata = metadata.textContent;
+  }
+
+  // Get &#x3c;font&#x3e; numeric attributes
+  attrs = {
+    width:        &#x27;horiz-adv-x&#x27;,
+    //height:       &#x27;vert-adv-y&#x27;,
+    horizOriginX: &#x27;horiz-origin-x&#x27;,
+    horizOriginY: &#x27;horiz-origin-y&#x27;,
+    vertOriginX:  &#x27;vert-origin-x&#x27;,
+    vertOriginY:  &#x27;vert-origin-y&#x27;
+  };
+  _.forEach(attrs, function (val, key) {
+    if (fontElem.hasAttribute(val)) { font[key] = parseInt(fontElem.getAttribute(val), 10); }
+  });
+
+  // Get &#x3c;font-face&#x3e; numeric attributes
+  attrs = {
+    ascent:     &#x27;ascent&#x27;,
+    descent:    &#x27;descent&#x27;,
+    unitsPerEm: &#x27;units-per-em&#x27;
+  };
+  _.forEach(attrs, function (val, key) {
+    if (fontFaceElem.hasAttribute(val)) { font[key] = parseInt(fontFaceElem.getAttribute(val), 10); }
+  });
+
+  if (fontFaceElem.hasAttribute(&#x27;font-weight&#x27;)) {
+    font.weightClass = fontFaceElem.getAttribute(&#x27;font-weight&#x27;);
+  }
+
+  var missingGlyphElem = fontElem.getElementsByTagName(&#x27;missing-glyph&#x27;)[0];
+
+  if (missingGlyphElem) {
+
+    font.missingGlyph = {};
+    font.missingGlyph.d = missingGlyphElem.getAttribute(&#x27;d&#x27;) || &#x27;&#x27;;
+
+    if (missingGlyphElem.getAttribute(&#x27;horiz-adv-x&#x27;)) {
+      font.missingGlyph.width = parseInt(missingGlyphElem.getAttribute(&#x27;horiz-adv-x&#x27;), 10);
+    }
+  }
+
+  var glyphs = [];
+  var ligatures = [];
+
+  _.forEach(fontElem.getElementsByTagName(&#x27;glyph&#x27;), function (glyphElem) {
+    var glyph = getGlyph(glyphElem);
+
+    if (_.has(glyph, &#x27;ligature&#x27;)) {
+      ligatures.push({
+        ligature: glyph.ligature,
+        unicode: glyph.ligatureCodes,
+        glyph: glyph
+      });
+    }
+
+    glyphs.push(glyph);
+  });
+
+  glyphs = deduplicateGlyps(glyphs, ligatures);
+
+  font.glyphs = glyphs;
+  font.ligatures = ligatures;
+
+  return font;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+var VERSION_RE = /^(Version )?(\d+[.]\d+)$/i;
+
+
+function svg2ttf(svgString, options) {
+var font = new sfnt.Font();
+var svgFont = svg.<span class="apidocCodeKeywordSpan">load</span>(svgString);
+
+options = options || {};
+
+font.id = options.id || svgFont.id;
+font.familyName = options.familyname || svgFont.familyName || svgFont.id;
+font.copyright = options.copyright || svgFont.metadata;
+font.sfntNames.push({ id: 2, value: options.subfamilyname || &#x27;Regular&#x27; }); // subfamily name
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.svg.toSfntCoutours" id="apidoc.element.svg2ttf.svg.toSfntCoutours">
+        function <span class="apidocSignatureSpan">svg2ttf.svg.</span>toSfntCoutours
+        <span class="apidocSignatureSpan">(svgPath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function toSfntCoutours(svgPath) {
+  var resContours = [];
+  var resContour = [];
+
+  svgPath.iterate(function (segment, index, x, y) {
+
+    //start new contour
+    if (index === 0 || segment[0] === &#x27;M&#x27;) {
+      resContour = [];
+      resContours.push(resContour);
+    }
+
+    var name = segment[0];
+
+    if (name === &#x27;Q&#x27;) {
+      //add control point of quad spline, it is not on curve
+      resContour.push({ x: segment[1], y: segment[2], onCurve: false });
+    }
+
+    // add on-curve point
+    if (name === &#x27;H&#x27;) {
+      // vertical line has Y coordinate only, X remains the same
+      resContour.push({ x: segment[1], y: y, onCurve: true });
+    } else if (name === &#x27;V&#x27;) {
+      // horizontal line has X coordinate only, Y remains the same
+      resContour.push({ x: x, y: segment[1], onCurve: true });
+    } else if (name !== &#x27;Z&#x27;) {
+      // for all commands (except H and V) X and Y are placed in the end of the segment
+      resContour.push({ x: segment[segment.length - 2], y: segment[segment.length - 1], onCurve: true });
+    }
+
+  });
+  return resContours;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    var svgPath = new SvgPath(glyph.d)
+.abs()
+.unshort()
+.unarc()
+.iterate(function (segment, index, x, y) {
+  return svg.cubicToQuad(segment, index, x, y, accuracy);
+});
+    var sfntContours = svg.<span class="apidocCodeKeywordSpan">toSfntCoutours</span>(svgPath);
+
+    // Add contours to SFNT font
+    glyph.contours = _.map(sfntContours, function (sfntContour) {
+var contour = new sfnt.Contour();
+
+contour.points = _.map(sfntContour, function (sfntPoint) {
+  var point = new sfnt.Point();
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.svg2ttf.ucs2" id="apidoc.module.svg2ttf.ucs2">module svg2ttf.ucs2</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.ucs2.decode" id="apidoc.element.svg2ttf.ucs2.decode">
+        function <span class="apidocSignatureSpan">svg2ttf.ucs2.</span>decode
+        <span class="apidocSignatureSpan">(string)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ucs2decode(string) {
+  var output = [],
+      counter = 0,
+      length = string.length,
+      value,
+      extra;
+
+  while (counter &#x3c; length) {
+    value = string.charCodeAt(counter++);
+    if (value &#x3e;= 0xD800 &#x26;&#x26; value &#x3c;= 0xDBFF &#x26;&#x26; counter &#x3c; length) {
+      // high surrogate, and there is a next character
+      extra = string.charCodeAt(counter++);
+      if ((extra &#x26; 0xFC00) === 0xDC00) { // low surrogate
+        output.push(((value &#x26; 0x3FF) &#x3c;&#x3c; 10) + (extra &#x26; 0x3FF) + 0x10000);
+      } else {
+        // unmatched surrogate; only append this code unit, in case the next
+        // code unit is the high surrogate of a surrogate pair
+        output.push(value);
+        counter--;
+      }
+    } else {
+      output.push(value);
+    }
+  }
+  return output;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var glyph = {};
+
+  glyph.d = glyphElem.getAttribute(&#x27;d&#x27;).trim();
+  glyph.unicode = [];
+
+  if (glyphElem.getAttribute(&#x27;unicode&#x27;)) {
+glyph.character = glyphElem.getAttribute(&#x27;unicode&#x27;);
+var unicode = ucs2.<span class="apidocCodeKeywordSpan">decode</span>(glyph.character);
+
+// If more than one code point is involved, the glyph is a ligature glyph
+if (unicode.length &#x3e; 1) {
+  glyph.ligature = glyph.character;
+  glyph.ligatureCodes = unicode;
+} else {
+  glyph.unicode.push(unicode[0]);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.ucs2.encode" id="apidoc.element.svg2ttf.ucs2.encode">
+        function <span class="apidocSignatureSpan">svg2ttf.ucs2.</span>encode
+        <span class="apidocSignatureSpan">(array)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ucs2encode(array) {
+  return _.map(array, function (value) {
+    var output = &#x27;&#x27;;
+
+    if (value &#x3e; 0xFFFF) {
+      value -= 0x10000;
+      output += String.fromCharCode(value &#x3e;&#x3e;&#x3e; 10 &#x26; 0x3FF | 0xD800);
+      value = 0xDC00 | value &#x26; 0x3FF;
+    }
+    output += String.fromCharCode(value);
+    return output;
+  }).join(&#x27;&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  _.forEach(ligature.unicode, function (charPoint) {
+    // We need to have a distinct glyph for each code point so we can reference it in GSUB
+    var glyph = new sfnt.Glyph();
+    var added = addCodePoint(charPoint, glyph);
+
+    if (added) {
+      glyph.name = ucs2.<span class="apidocCodeKeywordSpan">encode</span>([ charPoint ]);
+      glyphs.push(glyph);
+    }
+  });
+  ligatures.push(ligature);
+});
+
+// Missing Glyph needs to have index 0
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
