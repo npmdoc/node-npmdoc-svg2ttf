@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"svg2ttf",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "svg2ttf",
+    "description": "api documentation for [svg2ttf (v4.0.2)](https://github.com/fontello/svg2ttf#readme) [![npm package](https://img.shields.io/npm/v/npmdoc-svg2ttf.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-svg2ttf) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-svg2ttf.svg)](https://travis-ci.org/npmdoc/node-npmdoc-svg2ttf)",
     "devDependencies": {
-        "svg2ttf": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "svg2ttf": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-svg2ttf",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-svg2ttf",
+    "keywords": [
+        "documentation",
+        "svg2ttf"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_svg2ttf.js",
+    "name": "npmdoc-svg2ttf",
+    "nameAlias": "npmdoc_svg2ttf",
+    "nameOriginal": "npmdoc-svg2ttf",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-svg2ttf"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
