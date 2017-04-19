@@ -63,6 +63,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.svg2ttf">
+            function <span class="apidocSignatureSpan"></span>svg2ttf
+            <span class="apidocSignatureSpan">(svgString, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">svg2ttf.</span>math</span>
 
         </li>
@@ -82,6 +91,12 @@
         <li>
 
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">svg2ttf.</span>ucs2</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">svg2ttf.</span>utils</span>
 
         </li>
 
@@ -220,10 +235,200 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.svg2ttf.utils">module svg2ttf.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.utils.identifier">
+            function <span class="apidocSignatureSpan">svg2ttf.utils.</span>identifier
+            <span class="apidocSignatureSpan">(string, littleEndian)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.utils.interpolate">
+            function <span class="apidocSignatureSpan">svg2ttf.utils.</span>interpolate
+            <span class="apidocSignatureSpan">(contours, accuracy)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.utils.removeClosingReturnPoints">
+            function <span class="apidocSignatureSpan">svg2ttf.utils.</span>removeClosingReturnPoints
+            <span class="apidocSignatureSpan">(contours)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.utils.roundPoints">
+            function <span class="apidocSignatureSpan">svg2ttf.utils.</span>roundPoints
+            <span class="apidocSignatureSpan">(contours)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.utils.simplify">
+            function <span class="apidocSignatureSpan">svg2ttf.utils.</span>simplify
+            <span class="apidocSignatureSpan">(contours, accuracy)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.svg2ttf.utils.toRelative">
+            function <span class="apidocSignatureSpan">svg2ttf.utils.</span>toRelative
+            <span class="apidocSignatureSpan">(contours)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.svg2ttf" id="apidoc.module.svg2ttf">module svg2ttf</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.svg2ttf" id="apidoc.element.svg2ttf.svg2ttf">
+        function <span class="apidocSignatureSpan"></span>svg2ttf
+        <span class="apidocSignatureSpan">(svgString, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function svg2ttf(svgString, options) {
+  var font = new sfnt.Font();
+  var svgFont = svg.load(svgString);
+
+  options = options || {};
+
+  font.id = options.id || svgFont.id;
+  font.familyName = options.familyname || svgFont.familyName || svgFont.id;
+  font.copyright = options.copyright || svgFont.metadata;
+  font.sfntNames.push({ id: 2, value: options.subfamilyname || &#x27;Regular&#x27; }); // subfamily name
+  font.sfntNames.push({ id: 4, value: options.fullname || svgFont.id }); // full name
+
+
+  var versionString = options.version || &#x27;Version 1.0&#x27;;
+
+  if (typeof versionString !== &#x27;string&#x27;) {
+    throw new Error(&#x27;svg2ttf: version option should be a string&#x27;);
+  }
+  if (!VERSION_RE.test(versionString)) {
+    throw new Error(&#x27;svg2ttf: invalid option, version - &#x22;&#x27; + options.version + &#x27;&#x22;&#x27;);
+  }
+
+  versionString = &#x27;Version &#x27; + versionString.match(VERSION_RE)[2];
+  font.sfntNames.push({ id: 5, value: versionString }); // version ID for TTF name table
+
+
+  font.sfntNames.push({ id: 6, value: options.fullname || svgFont.id }); // Postscript name for the font, required for OSX Font
+Book
+
+  if (typeof options.ts !== &#x27;undefined&#x27;) {
+    font.createdDate = font.modifiedDate = new Date(parseInt(options.ts, 10) * 1000);
+  }
+
+  // Try to fill font metrics or guess defaults
+  //
+  font.unitsPerEm   = svgFont.unitsPerEm || 1000;
+  font.horizOriginX = svgFont.horizOriginX || 0;
+  font.horizOriginY = svgFont.horizOriginY || 0;
+  font.vertOriginX  = svgFont.vertOriginX || 0;
+  font.vertOriginY  = svgFont.vertOriginY || 0;
+  // need to correctly convert text values, use default (400) until compleete
+  //font.weightClass = svgFont.weightClass;
+  font.width    = svgFont.width || svgFont.unitsPerEm;
+  font.height   = svgFont.height || svgFont.unitsPerEm;
+  font.descent  = !isNaN(svgFont.descent) ? svgFont.descent : -font.vertOriginY;
+  font.ascent   = svgFont.ascent || (font.unitsPerEm - font.vertOriginY);
+
+  var glyphs = font.glyphs;
+  var codePoints = font.codePoints;
+  var ligatures = font.ligatures;
+
+  function addCodePoint(codePoint, glyph) {
+    if (codePoints[codePoint]) {
+      // Ignore code points already defined
+      return false;
+    }
+    codePoints[codePoint] = glyph;
+    return true;
+  }
+
+  // add SVG glyphs to SFNT font
+  _.forEach(svgFont.glyphs, function (svgGlyph) {
+    var glyph = new sfnt.Glyph();
+
+    glyph.name = svgGlyph.name;
+    glyph.d = svgGlyph.d;
+    glyph.height = !isNaN(svgGlyph.height) ? svgGlyph.height : font.height;
+    glyph.width = !isNaN(svgGlyph.width) ? svgGlyph.width : font.width;
+    glyphs.push(glyph);
+
+    svgGlyph.sfntGlyph = glyph;
+
+    _.forEach(svgGlyph.unicode, function (codePoint) {
+      addCodePoint(codePoint, glyph);
+    });
+  });
+
+  var missingGlyph;
+
+  // add missing glyph to SFNT font
+  // also, check missing glyph existance and single instance
+  if (svgFont.missingGlyph) {
+    missingGlyph = new sfnt.Glyph();
+    missingGlyph.d = svgFont.missingGlyph.d;
+    missingGlyph.height = !isNaN(svgFont.missingGlyph.height) ? svgFont.missingGlyph.height : font.height;
+    missingGlyph.width = !isNaN(svgFont.missingGlyph.width) ? svgFont.missingGlyph.width : font.width;
+  } else {
+    missingGlyph = _.find(glyphs, function (glyph) {
+      return glyph.name === &#x27;.notdef&#x27;;
+    });
+  }
+  if (!missingGlyph) { // no missing glyph and .notdef glyph, we need to create missing glyph
+    missingGlyph = new sfnt.Glyph();
+  }
+
+  // Create glyphs for all characters used in ligatures
+  _.forEach(svgFont.ligatures, function (svgLigature) {
+    var ligature = {
+      ligature: svgLigature.ligature,
+      unicode: svgLigature.unicode,
+      glyph: svgLigature.glyph.sfntGlyph
+    };
+
+    _.forEach(ligature.unicode, function (charPoint) {
+      // We need to have a distinct glyph for each code point so we can reference it in GSUB
+      var glyph = new sfnt.Glyph();
+      var added = addCodePoint(charPoint, glyph);
+
+      if (added) {
+        glyph.name = ucs2.encode([ charPoint ]);
+        glyphs.push(glyph);
+      }
+    });
+    ligatures.push(ligature);
+  });
+
+  // Missing Glyph needs to have index 0
+  if (glyphs.indexOf(missi ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
 
 
 
@@ -292,7 +497,23 @@ contour.points = _.map(sfntContour, function (sfntPoint) {
 
   return distance &#x3c; accuracy ? true : false;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+      // skip point (both oncurve &#x26; offcurve),
+      // if [prev,next] is straight line
+      if (prev.onCurve &#x26;&#x26; next.onCurve) {
+        p = new math.Point(curr.x, curr.y);
+        pPrev = new math.Point(prev.x, prev.y);
+        pNext = new math.Point(next.x, next.y);
+        if (math.<span class="apidocCodeKeywordSpan">isInLine</span>(pPrev, p, pNext, accuracy)) {
+          contour.splice(i, 1);
+        }
+      }
+    }
+    return contour;
+  });
+}
+...</pre></li>
     </ul>
 
 
@@ -1020,6 +1241,283 @@ if (unicode.length &#x3e; 1) {
 });
 
 // Missing Glyph needs to have index 0
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.svg2ttf.utils" id="apidoc.module.svg2ttf.utils">module svg2ttf.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.utils.identifier" id="apidoc.element.svg2ttf.utils.identifier">
+        function <span class="apidocSignatureSpan">svg2ttf.utils.</span>identifier
+        <span class="apidocSignatureSpan">(string, littleEndian)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function identifier(string, littleEndian) {
+  var result = 0;
+
+  for (var i = 0; i &#x3c; string.length; i++) {
+    result = result &#x3c;&#x3c; 8;
+    var index = littleEndian ? string.length - i - 1 : i;
+
+    result += string.charCodeAt(index);
+  }
+
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+buf.writeUint32(CONST.VERSION);
+buf.writeUint16(TABLES.length);
+buf.writeUint16(searchRange);
+buf.writeUint16(entrySelector);
+buf.writeUint16(rangeShift);
+
+_.forEach(TABLES, function (table) {
+  buf.writeUint32(utils.<span class="apidocCodeKeywordSpan">identifier</span>(table.innerName)); //inner name
+  buf.writeUint32(table.checkSum); //checksum
+  buf.writeUint32(table.offset); //offset
+  buf.writeUint32(table.length); //length
+});
+
+var headOffset = 0;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.utils.interpolate" id="apidoc.element.svg2ttf.utils.interpolate">
+        function <span class="apidocSignatureSpan">svg2ttf.utils.</span>interpolate
+        <span class="apidocSignatureSpan">(contours, accuracy)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function interpolate(contours, accuracy) {
+  return _.map(contours, function (contour) {
+    var resContour = [];
+
+    _.forEach(contour, function (point, idx) {
+      // Never skip first and last points
+      if (idx === 0 || idx === (contour.length - 1)) {
+        resContour.push(point);
+        return;
+      }
+
+      var prev = contour[idx - 1];
+      var next = contour[idx + 1];
+
+      var p, pPrev, pNext;
+
+      // skip interpolateable oncurve points (if exactly between previous and next offcurves)
+      if (!prev.onCurve &#x26;&#x26; point.onCurve &#x26;&#x26; !next.onCurve) {
+        p = new math.Point(point.x, point.y);
+        pPrev = new math.Point(prev.x, prev.y);
+        pNext = new math.Point(next.x, next.y);
+        if (pPrev.add(pNext).div(2).sub(p).dist() &#x3c; accuracy) {
+          return;
+        }
+      }
+      // keep the rest
+      resContour.push(point);
+    });
+    return resContour;
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // 0.3px accuracy is ok. fo 1000x1000.
+  glyph.ttfContours = utils.simplify(glyph.ttfContours, 0.3);
+  glyph.ttfContours = utils.simplify(glyph.ttfContours, 0.3); // one pass is not enougth
+
+  // Interpolated points can be removed. 1.1px is acceptable
+  // measure - it will give us 1px error after coordinates rounding.
+  glyph.ttfContours = utils.<span class="apidocCodeKeywordSpan">interpolate</span>(glyph.ttfContours, 1.1);
+
+  glyph.ttfContours = utils.roundPoints(glyph.ttfContours);
+  glyph.ttfContours = utils.removeClosingReturnPoints(glyph.ttfContours);
+  glyph.ttfContours = utils.toRelative(glyph.ttfContours);
+});
+
+// Add tables
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.utils.removeClosingReturnPoints" id="apidoc.element.svg2ttf.utils.removeClosingReturnPoints">
+        function <span class="apidocSignatureSpan">svg2ttf.utils.</span>removeClosingReturnPoints
+        <span class="apidocSignatureSpan">(contours)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function removeClosingReturnPoints(contours) {
+  return _.map(contours, function (contour) {
+    var length = contour.length;
+
+    if (length &#x3e; 1 &#x26;&#x26;
+      contour[0].x === contour[length - 1].x &#x26;&#x26;
+      contour[0].y === contour[length - 1].y) {
+      contour.splice(length - 1);
+    }
+    return contour;
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  glyph.ttfContours = utils.simplify(glyph.ttfContours, 0.3); // one pass is not enougth
+
+  // Interpolated points can be removed. 1.1px is acceptable
+  // measure - it will give us 1px error after coordinates rounding.
+  glyph.ttfContours = utils.interpolate(glyph.ttfContours, 1.1);
+
+  glyph.ttfContours = utils.roundPoints(glyph.ttfContours);
+  glyph.ttfContours = utils.<span class="apidocCodeKeywordSpan">removeClosingReturnPoints</span>(glyph.ttfContours);
+  glyph.ttfContours = utils.toRelative(glyph.ttfContours);
+});
+
+// Add tables
+var headerSize = 12 + 16 * TABLES.length; // TTF header plus table headers
+var bufSize = headerSize;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.utils.roundPoints" id="apidoc.element.svg2ttf.utils.roundPoints">
+        function <span class="apidocSignatureSpan">svg2ttf.utils.</span>roundPoints
+        <span class="apidocSignatureSpan">(contours)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function roundPoints(contours) {
+  return _.map(contours, function (contour) {
+    return _.map(contour, function (point) {
+      return { x: Math.round(point.x), y: Math.round(point.y), onCurve: point.onCurve };
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  glyph.ttfContours = utils.simplify(glyph.ttfContours, 0.3);
+  glyph.ttfContours = utils.simplify(glyph.ttfContours, 0.3); // one pass is not enougth
+
+  // Interpolated points can be removed. 1.1px is acceptable
+  // measure - it will give us 1px error after coordinates rounding.
+  glyph.ttfContours = utils.interpolate(glyph.ttfContours, 1.1);
+
+  glyph.ttfContours = utils.<span class="apidocCodeKeywordSpan">roundPoints</span>(glyph.ttfContours);
+  glyph.ttfContours = utils.removeClosingReturnPoints(glyph.ttfContours);
+  glyph.ttfContours = utils.toRelative(glyph.ttfContours);
+});
+
+// Add tables
+var headerSize = 12 + 16 * TABLES.length; // TTF header plus table headers
+var bufSize = headerSize;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.utils.simplify" id="apidoc.element.svg2ttf.utils.simplify">
+        function <span class="apidocSignatureSpan">svg2ttf.utils.</span>simplify
+        <span class="apidocSignatureSpan">(contours, accuracy)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function simplify(contours, accuracy) {
+  return _.map(contours, function (contour) {
+    var i, curr, prev, next;
+    var p, pPrev, pNext;
+
+    // run from the end, to simplify array elements removal
+    for (i = contour.length - 2; i &#x3e; 1; i--) {
+      prev = contour[i - 1];
+      next = contour[i + 1];
+      curr = contour[i];
+
+      // skip point (both oncurve &#x26; offcurve),
+      // if [prev,next] is straight line
+      if (prev.onCurve &#x26;&#x26; next.onCurve) {
+        p = new math.Point(curr.x, curr.y);
+        pPrev = new math.Point(prev.x, prev.y);
+        pNext = new math.Point(next.x, next.y);
+        if (math.isInLine(pPrev, p, pNext, accuracy)) {
+          contour.splice(i, 1);
+        }
+      }
+    }
+    return contour;
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+  });
+
+  // Process ttf contours data
+  _.forEach(font.glyphs, function (glyph) {
+
+// 0.3px accuracy is ok. fo 1000x1000.
+glyph.ttfContours = utils.<span class="apidocCodeKeywordSpan">simplify</span>(glyph.ttfContours, 0.3);
+glyph.ttfContours = utils.simplify(glyph.ttfContours, 0.3); // one pass is not enougth
+
+// Interpolated points can be removed. 1.1px is acceptable
+// measure - it will give us 1px error after coordinates rounding.
+glyph.ttfContours = utils.interpolate(glyph.ttfContours, 1.1);
+
+glyph.ttfContours = utils.roundPoints(glyph.ttfContours);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.svg2ttf.utils.toRelative" id="apidoc.element.svg2ttf.utils.toRelative">
+        function <span class="apidocSignatureSpan">svg2ttf.utils.</span>toRelative
+        <span class="apidocSignatureSpan">(contours)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function toRelative(contours) {
+  var prevPoint = { x: 0, y: 0 };
+  var resContours = [];
+  var resContour;
+
+  _.forEach(contours, function (contour) {
+    resContour = [];
+    resContours.push(resContour);
+    _.forEach(contour, function (point) {
+      resContour.push({
+        x: point.x - prevPoint.x,
+        y: point.y - prevPoint.y,
+        onCurve: point.onCurve
+      });
+      prevPoint = point;
+    });
+  });
+  return resContours;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // Interpolated points can be removed. 1.1px is acceptable
+  // measure - it will give us 1px error after coordinates rounding.
+  glyph.ttfContours = utils.interpolate(glyph.ttfContours, 1.1);
+
+  glyph.ttfContours = utils.roundPoints(glyph.ttfContours);
+  glyph.ttfContours = utils.removeClosingReturnPoints(glyph.ttfContours);
+  glyph.ttfContours = utils.<span class="apidocCodeKeywordSpan">toRelative</span>(glyph.ttfContours);
+});
+
+// Add tables
+var headerSize = 12 + 16 * TABLES.length; // TTF header plus table headers
+var bufSize = headerSize;
+
+_.forEach(TABLES, function (table) {
 ...</pre></li>
     </ul>
 
